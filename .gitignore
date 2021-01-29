@@ -1,0 +1,21 @@
+# OSX
+.DS_Store
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# Dependency directories
+node_modules
+jspm_packages
+
+# Optional npm cache directory
+.npm
+
+# Other
+package-lock.json
+.github/
+docs/
+dist/
