@@ -1,4 +1,4 @@
-import query from './query'
+import query, { RequestConfig } from './query'
 
 type Validator = {
   validatorAddress: string
@@ -8,18 +8,24 @@ type Validator = {
   validatorVotingPowerProportion: string
 }
 
-function getBnbTotalSupply(): Promise<string> {
-  return query({
-    module: 'stats',
-    action: 'bnbsupply',
-  })
+function getBnbTotalSupply(requestConfig?: RequestConfig) {
+  return query<string>(
+    {
+      module: 'stats',
+      action: 'bnbsupply',
+    },
+    requestConfig
+  )
 }
 
-function getValidatorsList(): Promise<Validator[]> {
-  return query({
-    module: 'stats',
-    action: 'validators',
-  })
+function getValidatorsList(requestConfig?: RequestConfig) {
+  return query<Validator[]>(
+    {
+      module: 'stats',
+      action: 'validators',
+    },
+    requestConfig
+  )
 }
 
 export default {

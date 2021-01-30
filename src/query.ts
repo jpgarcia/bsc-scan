@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import identity from 'lodash.identity'
 import pickBy from 'lodash.pickby'
 import qs from 'querystring'
@@ -13,7 +13,7 @@ type ContractAction = 'getabi' | 'getsourcecode'
 
 type StatsAction = 'tokensupply' | 'tokenCsupply' | 'tokenbalance' | 'bnbsupply' | 'validators'
 
-export type QueryOptions = {
+export type QueryParams = {
   module: Module
   action: AccountAction | ContractAction | StatsAction
   address?: string
@@ -28,7 +28,18 @@ export type QueryOptions = {
   apiKey?: string
 }
 
-async function query(options: QueryOptions) {
+export type RequestConfig = {
+  axiosConfig?: AxiosRequestConfig
+  rawAxiosResponse?: boolean
+}
+
+type Response<T> = {
+  status: '0' | '1'
+  message: string
+  result: T
+}
+
+async function query<T>(queryOptions: QueryParams, requestConfig?: RequestConfig) {
   const {
     address,
     contractAddress,
@@ -41,7 +52,7 @@ async function query(options: QueryOptions) {
     offset = 10000,
     sort = 'asc',
     apiKey = config.apiKey,
-  } = options
+  } = queryOptions
 
   const queryParams = pickBy(
     {
@@ -60,11 +71,22 @@ async function query(options: QueryOptions) {
     identity
   )
 
+  const { axiosConfig, rawAxiosResponse } = requestConfig || {}
+
   const query = qs.stringify(queryParams)
+  const response = await axios.get<Response<T>>(`${config.url}/api?${query}`, axiosConfig)
 
-  const { data } = await axios.get(`${config.url}/api?${query}`)
+  if (rawAxiosResponse) {
+    return response
+  }
 
-  return data.result
+  const { status, result } = response.data as Response<T>
+
+  if (status === '0') {
+    throw new Error(String(result))
+  }
+
+  return result
 }
 
 export default query
