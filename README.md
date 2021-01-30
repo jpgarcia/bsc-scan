@@ -1,9 +1,13 @@
 # Node.js BscScan API
 
-[![npm](https://img.shields.io/npm/v/bsc-scan.svg?style=flat-square)](https://www.npmjs.com/package/bsc-scan)
-[![Travis branch](https://img.shields.io/travis/jpgarcia/bsc-scan/master.svg?style=flat-square)](https://travis-ci.org/jpgarcia/bsc-scan)
+[![version](https://img.shields.io/npm/v/bsc-scan.svg)](https://www.npmjs.com/package/bsc-scan)
+[![minzipped size](https://img.shields.io/bundlephobia/minzip/bsc-scan.svg)](https://www.npmjs.com/package/bsc-scan)
+[![downloads](https://img.shields.io/npm/dt/bsc-scan.svg)](https://www.npmjs.com/package/bsc-scan)
+[![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fjpgarcia%2Fbsc-scan&via=binance&text=BscScan%20Node.js%20Api%20Client%21%20for%20Binance%20Smart%20Chain%20@binance%20%23BSC&hashtags=bnb%2Cbsc%2Cbinancesmartchaib%2Cbscscan)
 
-Node.js package to interact with official [BscScan API](https://bscscan.io/apis)
+<img src="https://bscscan.com/images/logo-bscscan.svg?v=0.0.2" height="40" />
+
+Node.js package to interact with official [BscScan API](https://bscscan.io/apis) powered by TypeScript.
 
 ## Documentation
 
