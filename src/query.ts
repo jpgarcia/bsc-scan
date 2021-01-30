@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { identity, pickBy } from 'lodash'
+import identity from 'lodash.identity'
+import pickBy from 'lodash.pickby'
 import qs from 'querystring'
 
 import config from './config'
