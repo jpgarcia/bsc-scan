@@ -1,29 +1,42 @@
-import query from './query'
+import query, { RequestConfig } from './query'
 
-function getTokenSupplyByContractAddress(contractAddress: string): Promise<string> {
-  return query({
-    contractAddress,
-    module: 'stats',
-    action: 'tokensupply',
-  })
+function getTokenSupplyByContractAddress(contractAddress: string, requestConfig?: RequestConfig) {
+  return query<string>(
+    {
+      contractAddress,
+      module: 'stats',
+      action: 'tokensupply',
+    },
+    requestConfig
+  )
 }
 
-function getCirculatingSupplyByContractAddress(contractAddress: string): Promise<string> {
-  return query({
-    contractAddress,
-    module: 'stats',
-    action: 'tokenCsupply',
-  })
+function getCirculatingSupplyByContractAddress(contractAddress: string, requestConfig?: RequestConfig) {
+  return query<string>(
+    {
+      contractAddress,
+      module: 'stats',
+      action: 'tokenCsupply',
+    },
+    requestConfig
+  )
 }
 
-function getAccountBalanceForTokenContractAddress(address: string, contractAddress: string): Promise<string> {
-  return query({
-    address,
-    contractAddress,
-    module: 'account',
-    action: 'tokenbalance',
-    tag: 'latest',
-  })
+function getAccountBalanceForTokenContractAddress(
+  address: string,
+  contractAddress: string,
+  requestConfig?: RequestConfig
+) {
+  return query<string>(
+    {
+      address,
+      contractAddress,
+      module: 'account',
+      action: 'tokenbalance',
+      tag: 'latest',
+    },
+    requestConfig
+  )
 }
 
 export default {

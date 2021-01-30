@@ -1,6 +1,6 @@
-import query, { QueryOptions } from './query'
+import query, { QueryParams, RequestConfig } from './query'
 
-type Options = Omit<QueryOptions, 'address' | 'contractAddress' | 'txhash' | 'module' | 'action'>
+type AccountQueryParams = Omit<QueryParams, 'address' | 'contractAddress' | 'txhash' | 'module' | 'action'>
 
 type BlockRange = {
   startBlock?: number
@@ -72,98 +72,144 @@ type TokenTransferEvent = {
   confirmations: string
 }
 
-function getBnbBalance(address: string, options?: Options): Promise<string> {
-  return query({
-    ...options,
-    address,
-    module: 'account',
-    action: 'balance',
-    tag: 'latest',
-  })
+function getBnbBalance(address: string, queryOptions?: AccountQueryParams, requestConfig?: RequestConfig) {
+  return query<string>(
+    {
+      ...queryOptions,
+      address,
+      module: 'account',
+      action: 'balance',
+      tag: 'latest',
+    },
+    requestConfig
+  )
 }
 
-function getBnbBalanceForMultipleAddresses(addresses: string[], options?: Options): Promise<AddressBalance[]> {
-  return query({
-    ...options,
-    address: addresses.join(','),
-    module: 'account',
-    action: 'balancemulti',
-    tag: 'latest',
-  })
+function getBnbBalanceForMultipleAddresses(
+  addresses: string[],
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<AddressBalance[]>(
+    {
+      ...queryOptions,
+      address: addresses.join(','),
+      module: 'account',
+      action: 'balancemulti',
+      tag: 'latest',
+    },
+    requestConfig
+  )
 }
 
-function getTransactions(address: string, options?: Options): Promise<Transaction[]> {
-  return query({
-    ...options,
-    address,
-    module: 'account',
-    action: 'txlist',
-  })
+function getInternalTransactionsByAddress(
+  address: string,
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<InternalTransaction[]>(
+    {
+      ...queryOptions,
+      address,
+      module: 'account',
+      action: 'txlistinternal',
+    },
+    requestConfig
+  )
 }
 
-function getInternalTransactionsByAddress(address: string, options?: Options): Promise<InternalTransaction[]> {
-  return query({
-    ...options,
-    address,
-    module: 'account',
-    action: 'txlistinternal',
-  })
-}
-
-function getInternalTransactionsByHash(txhash: string, options?: Options): Promise<InternalTransaction[]> {
-  return query({
-    ...options,
-    txhash,
-    module: 'account',
-    action: 'txlistinternal',
-  })
+function getInternalTransactionsByHash(
+  txhash: string,
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<InternalTransaction[]>(
+    {
+      ...queryOptions,
+      txhash,
+      module: 'account',
+      action: 'txlistinternal',
+    },
+    requestConfig
+  )
 }
 
 function getInternalTransactionsByBlockRange(
   blockRange: BlockRange,
-  options?: Omit<Options, 'startBlock' | 'endBlock'>
-): Promise<InternalTransaction[]> {
-  return query({
-    ...options,
-    ...blockRange,
-    module: 'account',
-    action: 'txlistinternal',
-  })
+  queryOptions?: Omit<AccountQueryParams, 'startBlock' | 'endBlock'>,
+  requestConfig?: RequestConfig
+) {
+  return query<InternalTransaction[]>(
+    {
+      ...queryOptions,
+      ...blockRange,
+      module: 'account',
+      action: 'txlistinternal',
+    },
+    requestConfig
+  )
 }
 
-function getTokenTransferEventsByAddress(address: string, options?: Options): Promise<TokenTransferEvent[]> {
-  return query({
-    ...options,
-    address,
-    module: 'account',
-    action: 'tokentx',
-  })
+function getTokenTransferEventsByAddress(
+  address: string,
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<TokenTransferEvent[]>(
+    {
+      ...queryOptions,
+      address,
+      module: 'account',
+      action: 'tokentx',
+    },
+    requestConfig
+  )
 }
 
 function getTokenTransferEventsByContractAddress(
   contractAddress: string,
-  options?: Options
-): Promise<TokenTransferEvent[]> {
-  return query({
-    ...options,
-    contractAddress,
-    module: 'account',
-    action: 'tokentx',
-  })
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<TokenTransferEvent[]>(
+    {
+      ...queryOptions,
+      contractAddress,
+      module: 'account',
+      action: 'tokentx',
+    },
+    requestConfig
+  )
 }
 
 function getTokenTransferEventsByAddressAndContractAddress(
   address: string,
   contractAddress: string,
-  options?: Options
-): Promise<TokenTransferEvent[]> {
-  return query({
-    ...options,
-    address,
-    contractAddress,
-    module: 'account',
-    action: 'tokentx',
-  })
+  queryOptions?: AccountQueryParams,
+  requestConfig?: RequestConfig
+) {
+  return query<TokenTransferEvent[]>(
+    {
+      ...queryOptions,
+      address,
+      contractAddress,
+      module: 'account',
+      action: 'tokentx',
+    },
+    requestConfig
+  )
+}
+
+function getTransactions(address: string, queryOptions?: AccountQueryParams, requestConfig?: RequestConfig) {
+  return query<Transaction[]>(
+    {
+      ...queryOptions,
+      address,
+      module: 'account',
+      action: 'txlist',
+    },
+    requestConfig
+  )
 }
 
 export default {

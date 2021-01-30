@@ -1,4 +1,4 @@
-import query, { QueryOptions } from './query'
+import query, { RequestConfig } from './query'
 
 type SourceCode = {
   SourceCode: string
@@ -16,24 +16,26 @@ type SourceCode = {
   SwarmSource: string
 }
 
-function getContractAbi(address: string): Promise<string> {
-  const queryOptions: QueryOptions = {
-    address,
-    module: 'contract',
-    action: 'getabi',
-  }
-
-  return query(queryOptions)
+function getContractAbi(address: string, requestConfig?: RequestConfig) {
+  return query<string>(
+    {
+      address,
+      module: 'contract',
+      action: 'getabi',
+    },
+    requestConfig
+  )
 }
 
-function getContractSourceCode(address: string): Promise<SourceCode[]> {
-  const queryOptions: QueryOptions = {
-    address,
-    module: 'contract',
-    action: 'getsourcecode',
-  }
-
-  return query(queryOptions)
+function getContractSourceCode(address: string, requestConfig?: RequestConfig) {
+  return query<SourceCode[]>(
+    {
+      address,
+      module: 'contract',
+      action: 'getsourcecode',
+    },
+    requestConfig
+  )
 }
 
 export default {
