@@ -23,10 +23,6 @@ jobs:
       with:
         cmd: install # will run `yarn install` command
 
-    - uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: build # will run `yarn build` command
-
     - uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}
