@@ -21,6 +21,7 @@ export type QueryParams = {
   txhash?: string
   startBlock?: number
   endBlock?: number
+  blockno?: number
   page?: number
   offset?: number
   sort?: 'asc' | 'desc'
