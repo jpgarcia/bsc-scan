@@ -51,7 +51,7 @@ function getHistoricAccountBalanceForTokenContractAddress(
       contractAddress,
       module: 'account',
       action: 'tokenbalancehistory',
-      blockno
+      blockno,
       tag: 'latest',
     },
     requestConfig
