@@ -62,4 +62,5 @@ export default {
   getTokenSupplyByContractAddress,
   getCirculatingSupplyByContractAddress,
   getAccountBalanceForTokenContractAddress,
+  getHistoricAccountBalanceForTokenContractAddress,
 }
