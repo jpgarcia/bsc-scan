@@ -22,8 +22,8 @@ jobs:
     - uses: borales/actions-yarn@v2.3.0
       with:
         cmd: install # will run `yarn install` command
-
-    - uses: JS-DevTools/npm-publish@v1
+        
+    - uses: borales/actions-yarn@v2.3.0
       with:
-        token: ${{ secrets.NPM_TOKEN }}
-        access: 'public'
+        auth-token: ${{ secrets.NPM_TOKEN }}
+        cmd: publish # will run `yarn publish` command
