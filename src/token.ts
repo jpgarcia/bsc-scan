@@ -39,7 +39,7 @@ function getAccountBalanceForTokenContractAddress(
   )
 }
 
-function getHistoricialAccountBalanceForTokenContractAddress (
+function getHistoricalAccountBalanceForTokenContractAddress (
   address: string,
   contractAddress: string,
   blockno: number,
@@ -62,5 +62,5 @@ export default {
   getTokenSupplyByContractAddress,
   getCirculatingSupplyByContractAddress,
   getAccountBalanceForTokenContractAddress,
-  getHistoricAccountBalanceForTokenContractAddress,
+  getHistoricalAccountBalanceForTokenContractAddress,
 }
