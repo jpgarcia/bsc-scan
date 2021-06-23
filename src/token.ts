@@ -39,7 +39,7 @@ function getAccountBalanceForTokenContractAddress(
   )
 }
 
-function getHistoricAccountBalanceForTokenContractAddress(
+function getHistoricialAccountBalanceForTokenContractAddress (
   address: string,
   contractAddress: string,
   blockno: number,
