@@ -11,7 +11,7 @@ type AccountAction = 'balance' | 'balancemulti' | 'txlist' | 'txlistinternal' | 
 
 type ContractAction = 'getabi' | 'getsourcecode'
 
-type StatsAction = 'tokensupply' | 'tokenCsupply' | 'tokenbalance' | 'bnbsupply' | 'validators'
+type StatsAction = 'tokensupply' | 'tokenCsupply' | 'tokenbalance' | 'tokenbalancehistory' | 'bnbsupply' | 'validators'
 
 export type QueryParams = {
   module: Module
@@ -21,6 +21,7 @@ export type QueryParams = {
   txhash?: string
   startBlock?: number
   endBlock?: number
+  blockno?: number
   page?: number
   offset?: number
   sort?: 'asc' | 'desc'

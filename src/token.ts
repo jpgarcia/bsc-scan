@@ -39,8 +39,28 @@ function getAccountBalanceForTokenContractAddress(
   )
 }
 
+function getHistoricalAccountBalanceForTokenContractAddress (
+  address: string,
+  contractAddress: string,
+  blockno: number,
+  requestConfig?: RequestConfig
+) {
+  return query<string>(
+    {
+      address,
+      contractAddress,
+      module: 'account',
+      action: 'tokenbalancehistory',
+      blockno,
+      tag: 'latest',
+    },
+    requestConfig
+  )
+}
+
 export default {
   getTokenSupplyByContractAddress,
   getCirculatingSupplyByContractAddress,
   getAccountBalanceForTokenContractAddress,
+  getHistoricalAccountBalanceForTokenContractAddress,
 }
