@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jpgarcia/bsc-scan/compare/v1.1.0...v1.2.0) (2021-06-24)
+
+
+### Features
+
+* add new api method (force release) ([4088153](https://github.com/jpgarcia/bsc-scan/commit/40881536126b0563ddd346fdba8a7ffa3a0c15ec))
+
 # [1.1.0](https://github.com/jpgarcia/bsc-scan/compare/v1.0.0...v1.1.0) (2021-01-30)
 
 
