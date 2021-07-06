@@ -5,7 +5,7 @@ import qs from 'querystring'
 
 import config from './config'
 
-type Module = 'account' | 'contract' | 'stats'
+type Module = 'account' | 'contract' | 'stats' | 'block'
 
 type AccountAction = 'balance' | 'balancemulti' | 'txlist' | 'txlistinternal' | 'tokentx' | 'getminedblocks'
 
@@ -13,9 +13,11 @@ type ContractAction = 'getabi' | 'getsourcecode'
 
 type StatsAction = 'tokensupply' | 'tokenCsupply' | 'tokenbalance' | 'tokenbalancehistory' | 'bnbsupply' | 'validators'
 
+type BlockAction = 'getblockreward' | 'getblockcountdown' | 'getblocknobytime'
+
 export type QueryParams = {
   module: Module
-  action: AccountAction | ContractAction | StatsAction
+  action: AccountAction | ContractAction | StatsAction | BlockAction
   address?: string
   contractAddress?: string
   txhash?: string
@@ -27,6 +29,8 @@ export type QueryParams = {
   sort?: 'asc' | 'desc'
   tag?: string
   apiKey?: string
+  timestamp?: number
+  closest?: 'before' | 'after'
 }
 
 export type RequestConfig = {
@@ -53,6 +57,8 @@ async function query<T>(queryOptions: QueryParams, requestConfig?: RequestConfig
     offset = 10000,
     sort = 'asc',
     apiKey = config.apiKey,
+    closest,
+    timestamp
   } = queryOptions
 
   const queryParams = pickBy(
@@ -68,6 +74,8 @@ async function query<T>(queryOptions: QueryParams, requestConfig?: RequestConfig
       offset,
       sort,
       apiKey,
+      closest,
+      timestamp
     },
     identity
   )
